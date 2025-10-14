@@ -188,6 +188,15 @@
         }
 
         .botao-site {
+            background-color: #e1656e;
+            color: white;
+
+            i {
+                margin-right: 10px;
+            }
+        }
+
+        .botao-presentes {
             background-color: #70161c;
             color: white;
 
@@ -230,8 +239,9 @@
             <h2>✨ Convite Aberto! ✨</h2>
             <p>O que você gostaria de fazer?</p>
             <div class="modal-botoes">
-                <button class="botao botao-baixar" onclick="baixarConvite()"><i class="fas fa-download"></i> Baixar</button>
+                <button class="botao botao-baixar" onclick="baixarConvite()"><i class="fas fa-download"></i> Baixar Convite</button>
                 <button class="botao botao-site" onclick="irParaSite()"><i class="fas fa-heart"></i>Ver Site</button>
+                <button class="botao botao-presentes" onclick="irParaPresentes()"><i class="fas fa-gift"></i> Sugestão de Presentes</button>
                 <button class="botao botao-whatsapp" onclick="irParaWhatsapp()"><i class="fab fa-whatsapp"></i>Confirmar Presença no Whatsapp</button>
             </div>
         </div>
@@ -273,6 +283,11 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            fecharModal();
+        }
+
+        function irParaPresentes() {
+            window.open("https://www.mercadolivre.com.br/presentes/andressa-e-paulo-2025-b5611", "_blank");
             fecharModal();
         }
 
