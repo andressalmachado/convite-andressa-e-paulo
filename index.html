@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite de Casamento Andressa e Paulo</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container-convite {
+            position: relative;
+            width: 80vw;
+            height: 70vh;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .imagem-convite {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #capa {
+            z-index: 2;
+            transition: transform 1.0s ease-in-out;
+        }
+
+        #conteudo {
+            z-index: 1;
+        }
+
+        .capa-aberta {
+            transform: translateX(-100%);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="conviteContainer" class="container-convite">
+
+        <img id="capa" class="imagem-convite" src="img/capa.png" alt="Capa do Convite">
+
+        <img id="conteudo" class="imagem-convite" src="img/convite.png" alt="Conteúdo do Convite">
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const capa = document.getElementById('capa');
+            const container = document.getElementById('conviteContainer');
+
+            container.addEventListener('click', function() {
+                capa.classList.add('capa-aberta');
+            });
+        });
+
+        document.getElementById('conteudo').addEventListener('click', function() {
+            window.open("https://sites.icasei.com.br/andressapaulo2025", "_blank");
+        });
+    </script>
+
+</body>
+</html>
