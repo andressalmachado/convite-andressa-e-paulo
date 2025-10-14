@@ -158,7 +158,7 @@
     </div>
 
     <!-- Modal -->
-    <div id="modalOverlayy" class="modal-overlay" onclick="fecharModal(event)">
+    <div id="modalOverlay" class="modal-overlay" onclick="fecharModal(event)">
         <div class="modal">
             <h2>✨ Convite Aberto! ✨</h2>
             <p>O que você gostaria de fazer?</p>
@@ -178,6 +178,7 @@
             const capa = document.getElementById('capa');
             const container = document.getElementById('conviteContainer');
             const modalOverlay = document.getElementById('modalOverlay');
+
             let conviteAberto = false;
 
             container.addEventListener('click', function(e) {
@@ -186,7 +187,7 @@
                     conviteAberto = true;
                 }
             });
-
+            
             conteudo.addEventListener('click', function() {
                 modalOverlay.classList.add('ativo');
             });
