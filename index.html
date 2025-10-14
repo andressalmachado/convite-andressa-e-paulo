@@ -110,16 +110,6 @@
             .modal p {
                 font-size: 14px;
             }
-
-            .modal-botoes {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .botao {
-                padding: 12px 25px;
-                font-size: 14px;
-            }
         }
 
         .modal-overlay.ativo .modal {
@@ -144,6 +134,7 @@
             display: flex;
             gap: 15px;
             justify-content: center;
+            flex-direction: column;
         }
 
         .botao {
@@ -180,6 +171,15 @@
             }
         }
 
+        .botao-whatsapp {
+            background-color: #25d366;
+            color: white;
+
+            i {
+                margin-right: 10px;
+            }
+        }
+
         .botao-fechar {
             margin-top: 20px;
             background-color: #f4f4f4;
@@ -205,13 +205,10 @@
             <h2>✨ Convite Aberto! ✨</h2>
             <p>O que você gostaria de fazer?</p>
             <div class="modal-botoes">
-                <!-- colocar esse icone no botao <i class="fas fa-download"></i> -->
                 <button class="botao botao-baixar" onclick="baixarConvite()"><i class="fas fa-download"></i> Baixar</button>
-                <!-- <button class="botao botao-baixar" onclick="baixarConvite()">💾 Baixar</button> -->
-                
                 <button class="botao botao-site" onclick="irParaSite()"><i class="fas fa-heart"></i>Ver Site</button>
+                <button class="botao botao-whatsapp" onclick="irParaWhatsapp()"><i class="fab fa-whatsapp"></i>Confirmar Presença no Whatsapp</button>
             </div>
-            <button class="botao botao-fechar" onclick="fecharModal()">Fechar</button>
         </div>
     </div>
 
@@ -251,6 +248,11 @@
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            fecharModal();
+        }
+
+        function irParaWhatsapp() {
+            window.open("https://wa.me/5511982454222", "_blank");
             fecharModal();
         }
 
