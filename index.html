@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/6d34a86a2a.js" crossorigin="anonymous"></script>
     <title>Convite de Casamento Andressa e Paulo</title>
     <style>
         body {
@@ -16,12 +17,12 @@
 
         .container-convite {
             position: relative;
-            width: 90%;
-            max-width: 800px;
-            height: 85vh;
-            max-height: 90vh;
+            width: 676px;
+            height: 480px;
             overflow: hidden;
+            background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
         }
 
         .imagem-convite {
@@ -30,13 +31,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            /* object-fit: contain; */
-            object-position: center;
+            object-fit: contain; /* Mantém a imagem inteira visível sem cortar */
         }
 
         #capa {
             z-index: 2;
-            transition: transform 2.0s ease-in-out;
+            transition: transform 1.0s ease-in-out;
         }
 
         #conteudo {
@@ -45,6 +45,105 @@
 
         .capa-aberta {
             transform: translateX(-100%);
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .modal-overlay.ativo {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .modal {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            transform: scale(0.7);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .modal-overlay.ativo .modal {
+            transform: scale(1);
+        }
+
+        .modal h2 {
+            margin: 0 0 20px 0;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+        }
+
+        .modal p {
+            margin: 0 0 30px 0;
+            color: #666;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        .modal-botoes {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .botao {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: Arial, sans-serif;
+        }
+
+        .botao:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .botao-baixar {
+            background-color: #8f8a8a;
+            color: white;
+
+            i {
+                margin-right: 10px;
+            }
+        }
+
+        .botao-site {
+            background-color: #70161c;
+            color: white;
+
+            i {
+                margin-right: 10px;
+            }
+        }
+
+        .botao-fechar {
+            margin-top: 20px;
+            background-color: #f4f4f4;
+            color: #666;
+            padding: 10px 20px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -58,19 +157,64 @@
 
     </div>
 
+    <!-- Modal -->
+    <div id="modalOverlayy" class="modal-overlay" onclick="fecharModal(event)">
+        <div class="modal">
+            <h2>✨ Convite Aberto! ✨</h2>
+            <p>O que você gostaria de fazer?</p>
+            <div class="modal-botoes">
+                <!-- colocar esse icone no botao <i class="fas fa-download"></i> -->
+                <button class="botao botao-baixar" onclick="baixarConvite()"><i class="fas fa-download"></i> Baixar</button>
+                <!-- <button class="botao botao-baixar" onclick="baixarConvite()">💾 Baixar</button> -->
+                
+                <button class="botao botao-site" onclick="irParaSite()"><i class="fas fa-heart"></i>Ver Site</button>
+            </div>
+            <button class="botao botao-fechar" onclick="fecharModal()">Fechar</button>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const capa = document.getElementById('capa');
             const container = document.getElementById('conviteContainer');
+            const modalOverlay = document.getElementById('modalOverlay');
+            let conviteAberto = false;
 
-            container.addEventListener('click', function() {
-                capa.classList.add('capa-aberta');
+            container.addEventListener('click', function(e) {
+                if (!conviteAberto) {
+                    capa.classList.add('capa-aberta');
+                    conviteAberto = true;
+                }
+            });
+
+            conteudo.addEventListener('click', function() {
+                modalOverlay.classList.add('ativo');
             });
         });
 
-        document.getElementById('conteudo').addEventListener('click', function() {
+        function fecharModal(event) {
+            const modalOverlay = document.getElementById('modalOverlay');
+            // Fecha apenas se clicar no overlay (fundo) ou no botão fechar
+            if (event && event.target.classList.contains('modal')) {
+                return;
+            }
+            modalOverlay.classList.remove('ativo');
+        }
+
+        function baixarConvite() {
+            const link = document.createElement('a');
+            link.href = 'img/convite.png';
+            link.download = 'Convite_Casamento_Andressa_Paulo.png';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            fecharModal();
+        }
+
+        function irParaSite() {
             window.open("https://sites.icasei.com.br/andressapaulo2025", "_blank");
-        });
+            fecharModal();
+        }
     </script>
 
 </body>
