@@ -19,10 +19,27 @@
             position: relative;
             width: 676px;
             height: 480px;
+            max-width: 95vw;
+            max-height: 70vh;
             overflow: hidden;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             cursor: pointer;
+        }
+
+        /* Responsivo para telas menores */
+        @media (max-width: 700px) {
+            .container-convite {
+                width: 95vw;
+                height: calc(95vw * 0.71); /* Mantém proporção 676:480 */
+            }
+        }
+
+        @media (max-height: 550px) {
+            .container-convite {
+                height: 85vh;
+                width: calc(85vh * 1.41); /* Mantém proporção 676:480 */
+            }
         }
 
         .imagem-convite {
@@ -76,8 +93,33 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             text-align: center;
             max-width: 400px;
+            width: 90%;
             transform: scale(0.7);
             transition: transform 0.3s ease-in-out;
+        }
+
+        @media (max-width: 500px) {
+            .modal {
+                padding: 30px 20px;
+            }
+
+            .modal h2 {
+                font-size: 20px;
+            }
+
+            .modal p {
+                font-size: 14px;
+            }
+
+            .modal-botoes {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .botao {
+                padding: 12px 25px;
+                font-size: 14px;
+            }
         }
 
         .modal-overlay.ativo .modal {
